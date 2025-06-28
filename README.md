@@ -25,7 +25,7 @@ A Laravel 12 package that integrates directly with a WordPress WooCommerce MySQL
 1. **Install the package via Composer:**
 
 ```bash
-composer require boukjijtarik/wooSales
+composer require boukjijtarik/woo-sales
 ```
 
 2. **Publish the configuration file:**

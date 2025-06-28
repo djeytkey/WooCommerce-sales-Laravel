@@ -107,7 +107,7 @@ wooSales/
 
 ```bash
 # Install package
-composer require boukjijtarik/wooSales
+composer require boukjijtarik/woo-sales
 
 # Publish configuration
 php artisan vendor:publish --tag=wooSales-config

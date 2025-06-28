@@ -14,7 +14,7 @@ Before starting, ensure you have:
 ## Step 1: Install the Package
 
 ```bash
-composer require boukjijtarik/wooSales
+composer require boukjijtarik/woo-sales
 ```
 
 ## Step 2: Configure Database Connection

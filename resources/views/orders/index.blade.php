@@ -8,6 +8,31 @@
 تقرير المبيعات
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+    .filters-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .export-buttons {
+        margin-bottom: 20px;
+    }
+    
+    .loading {
+        display: none;
+    }
+    
+    .table-responsive {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>
+@endsection
+
 @section('content')
 @if (session()->has('message'))
 <div class="content w-50">
@@ -121,6 +146,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 $(document).ready(function() {
     // Initialize date pickers

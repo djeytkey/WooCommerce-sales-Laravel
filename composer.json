@@ -1,0 +1,40 @@
+{
+    "name": "boukjijtarik/wooSales",
+    "description": "WooCommerce Sales Report Package for Laravel 12",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tarik Boukjij",
+            "email": "tarik.engineering@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^12.0",
+        "maatwebsite/excel": "^3.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BoukjijTarik\\WooSales\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BoukjijTarik\\WooSales\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BoukjijTarik\\WooSales\\WooSalesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+} 

@@ -1,84 +1,119 @@
-@extends('wooSales::layouts.app')
+@extends('layouts.admin')
 
-@section('title', 'WooCommerce Orders')
+@section('title')
+تقرير المبيعات
+@endsection
+
+@section('contentheader')
+تقرير المبيعات
+@endsection
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">WooCommerce Orders</h1>
-            <div class="export-buttons">
-                <button type="button" class="btn btn-success" id="exportExcel">
-                    <i class="bi bi-file-earmark-excel"></i> Export to Excel
-                </button>
-            </div>
+@if (session()->has('message'))
+<div class="content w-50">
+    <div class="container-fluid">
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right: auto; opacity: .6;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {!! session()->get('message') !!}
         </div>
+    </div>
+</div>
+@endif
+@if (session()->has('error'))
+<div class="content w-50">
+    <div class="container-fluid">
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right: auto; opacity: .6;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {!! session()->get('error') !!}
+        </div>
+    </div>
+</div>
+@endif
 
-        <!-- Filters Section -->
-        <div class="filters-section">
-            <form id="filtersForm">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="start_date" class="form-label">Start Date</label>
-                        <input type="text" class="form-control" id="start_date" name="start_date" placeholder="Select start date">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="end_date" class="form-label">End Date</label>
-                        <input type="text" class="form-control" id="end_date" name="end_date" placeholder="Select end date">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="order_id" class="form-label">Order ID</label>
-                        <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="order_status" class="form-label">Order Status</label>
-                        <select class="form-select" id="order_status" name="order_status[]" multiple>
-                            <option value="wc-completed">Completed</option>
-                            <option value="wc-processing">Processing</option>
-                            <option value="wc-on-hold">On Hold</option>
-                            <option value="wc-pending">Pending</option>
-                            <option value="wc-cancelled">Cancelled</option>
-                            <option value="wc-refunded">Refunded</option>
-                            <option value="wc-failed">Failed</option>
-                        </select>
-                    </div>
-                    <div class="col-md-1">
-                        <label class="form-label">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="bi bi-search"></i> Filter
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h3 mb-0">WooCommerce Orders</h1>
+                    <div class="export-buttons">
+                        <button type="button" class="btn btn-success" id="exportExcel">
+                            <i class="bi bi-file-earmark-excel"></i> Export to Excel
                         </button>
                     </div>
                 </div>
-            </form>
-        </div>
 
-        <!-- DataTable -->
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="ordersTable" class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Line Subtotal</th>
-                                <th>Line Discount</th>
-                                <th>Order Date</th>
-                                <th>Order Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <form id="filtersForm">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="start_date" class="form-label">Start Date</label>
+                                <input type="text" class="form-control" id="start_date" name="start_date" placeholder="Select start date">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="end_date" class="form-label">End Date</label>
+                                <input type="text" class="form-control" id="end_date" name="end_date" placeholder="Select end date">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="order_id" class="form-label">Order ID</label>
+                                <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="order_status" class="form-label">Order Status</label>
+                                <select class="form-select" id="order_status" name="order_status[]" multiple>
+                                    <option value="wc-completed">Completed</option>
+                                    <option value="wc-processing">Processing</option>
+                                    <option value="wc-on-hold">On Hold</option>
+                                    <option value="wc-pending">Pending</option>
+                                    <option value="wc-cancelled">Cancelled</option>
+                                    <option value="wc-refunded">Refunded</option>
+                                    <option value="wc-failed">Failed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-search"></i> Filter
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
 
-        <!-- Loading Spinner -->
-        <div class="loading text-center mt-4">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <!-- DataTable -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="ordersTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Line Subtotal</th>
+                                        <th>Line Discount</th>
+                                        <th>Order Date</th>
+                                        <th>Order Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading text-center mt-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -188,10 +223,12 @@ $(document).ready(function() {
                     link.click();
                     document.body.removeChild(link);
                 } else {
+                    console.log("Error Response from success : " + response);
                     alert('Export failed. Please try again.');
                 }
             },
             error: function() {
+                console.log("Error Response from error : " + response);
                 alert('Export failed. Please try again.');
             },
             complete: function() {
